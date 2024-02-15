@@ -49,6 +49,12 @@ app.use(express.urlencoded({ extended: true }));
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to isaac's application." });
+  res.redirect("/");
+});
+
+
+app.post("/", (req, res) => {
+  res.json({ message: "Connected to server!" });
 });
 
 // routes
