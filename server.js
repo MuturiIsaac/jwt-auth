@@ -5,7 +5,11 @@ const app = express();
 const db = require("./app/models");
 const Role = db.role;
 
-db.sequelize.sync({force: true}).then(() => {
+
+
+db.sequelize.sync();
+
+db.sequelize.sync({alter : true}).then(() => {
   console.log('Drop and Resync Db');
   initial();
 });
