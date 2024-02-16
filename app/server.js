@@ -34,8 +34,10 @@ function initial() {
 
 
 
+
+
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:3000" // Allow requests from your frontend
 };
 
 app.use(cors(corsOptions));
