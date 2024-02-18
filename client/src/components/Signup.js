@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+//import { Link } from 'react-router-dom';
 import Axios from 'axios'
 
 import {
@@ -12,7 +13,7 @@ import {
   MDBIcon,
 } from 'mdb-react-ui-kit';
 
-function App() {
+function App({ setShowSignin }) {
   const url ="http://localhost:8080/api/auth/signup"
   const [data, setData] = useState({
     username: "",
@@ -43,6 +44,11 @@ function App() {
       .catch((error) => {
         console.error(error); // Handle API errors
       });
+  };
+
+  const handleSignInClick = (event) => {
+    event.preventDefault(); // Prevent default behavior of anchor
+    setShowSignin(true); // Set showSignin state to true
   };
 
   // Fetch data from the API when component mounts
@@ -116,12 +122,17 @@ function App() {
                   <MDBIcon fab icon="google" size="lg" />
                 </MDBBtn>
               </div>
-
+             
               <div>
                 <p className="mb-0">
-                  Do you  have an account? <a href="#!" class="text-white-50 fw-bold">Sign In</a>
+                  Do you have an account?{' '}
+                  <a href="/Signin" role="button" onClick={handleSignInClick} className="text-white-50 fw-bold">
+                    Sign in
+                  </a>
                 </p>
               </div>
+  
+             
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

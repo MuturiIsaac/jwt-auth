@@ -15,7 +15,7 @@ import {
 function SignInForm() {
   const url = "http://localhost:8080/api/auth/signin";
   const [data, setData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -29,7 +29,7 @@ function SignInForm() {
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission
     Axios.post(url, { // Replace 'url' with the actual API endpoint
-      email: data.email,
+      username: data.username,
       password: data.password,
     })
       .then((res) => {
@@ -40,6 +40,13 @@ function SignInForm() {
         console.error(error); // Handle API errors
       });
   };
+
+  const [showSignup, setShowSignup] = useState(true); // State to track whether to show signup form
+
+  const handleToggleForm = () => {
+    setShowSignup(!showSignup);
+  };
+
 
   return (
     <MDBContainer fluid>
@@ -52,12 +59,12 @@ function SignInForm() {
 
               <MDBInput
                 onChange={handleInputChange}
-                id="email"
-                value={data.email}
+                id="username"
+                value={data.username}
                 wrapperClass="mb-4 mx-5 w-100"
                 labelClass="text-white"
-                label="Email address"
-                type="email"
+                label="username"
+                type="text"
                 size="lg"
               />
               <MDBInput
@@ -92,7 +99,10 @@ function SignInForm() {
 
               <div>
                 <p className="mb-0">
-                  Don't have an account? <a href="#!" className="text-white-50 fw-bold">Sign Up</a>
+                  Do you have an account?{' '}
+                  <a href="/Signup" role="button" onClick={handleToggleForm} className="text-white-50 fw-bold">
+                    Sign up
+                  </a>
                 </p>
               </div>
             </MDBCardBody>
